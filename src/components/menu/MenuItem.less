@@ -20,8 +20,11 @@
   border: 1px solid transparent;
   margin: 1px;
 
-  & > span {
+  & > .menu-title {
     display: inline-block;
+  }
+  & > .menu-shortcut {
+    display: none;
   }
   & > .icon {
     display: none;
@@ -56,8 +59,14 @@
       padding: 3px 8px;
       font-size: 12px;
 
-      & > span {
+      & > .menu-title {
         margin-left: 30px;
+      }
+
+      & > .menu-shortcut {
+        display: inline-block;
+        position: absolute;
+        right: 10px;
       }
       .icon {
         display: block;

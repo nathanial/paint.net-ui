@@ -5,6 +5,12 @@ import ReactDOM from 'react-dom';
 import Component from 'react-es6-component';
 
 class MenuItem extends Component {
+  static propTypes = {
+    label: React.PropTypes.string,
+    separator: React.PropTypes.bool,
+    shortcut: React.PropTypes.string
+  }
+
   state = {
     open: false
   }
@@ -22,11 +28,12 @@ class MenuItem extends Component {
         className += " open";
       }
       return (
-        <div onClick={this._onMenuClick} className={className}>
+        <div onClick={this._onMenuClick} className={className} {...this.props}>
           <div className="icon">
             {this._renderIcon()}
           </div>
-          <span >{this.props.label}</span>
+          <span className="menu-title" >{this.props.label}</span>
+          <span className="menu-shortcut">{this.props.shortcut}</span>
           {this._renderChildren()}
         </div>
       );
@@ -39,6 +46,22 @@ class MenuItem extends Component {
 
   componentWillUnmount(){
     this._removeListeners();
+  }
+
+  isOpen(){
+    return this.state.open;
+  }
+
+  open(){
+    this.setState({
+      open: true
+    });
+  }
+
+  close(){
+    this.setState({
+      open: false
+    });
   }
 
   _renderIcon(){
