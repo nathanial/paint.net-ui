@@ -11,7 +11,7 @@ class TopMenu extends Component {
         <MenuBar>
           <MenuItem label="File">
             <MenuItem label="New..."></MenuItem>
-            <MenuItem label="Open..."></MenuItem>
+            <MenuItem label="Open..." icon="images/folder_vertical_open.png"></MenuItem>
             <MenuItem label="Acquire"></MenuItem>
             <MenuItem label="Close"></MenuItem>
             <MenuItem separator={true}></MenuItem>
