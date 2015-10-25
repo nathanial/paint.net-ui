@@ -1,9 +1,14 @@
 .menu-item-separator {
-  position: absolute;
-  left: 27px;
-  right: 0;
-  background: #ccc;
-  height: 1px;
+  position: relative;
+  margin-left: 27px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-left: 1px solid #ccc;
+  margin-bottom: -1px;
+  .sep {
+    height: 1px;
+    background: #ccc;
+  }
 }
 
 .menu-item {
@@ -59,7 +64,7 @@
         position: absolute;
         top: -1px;
         bottom: -2px;
-        width: 15px;
+        width: 17px;
         border-right: 1px solid #ccc;
         & > img {
           position: absolute;

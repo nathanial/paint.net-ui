@@ -6,7 +6,7 @@ import Component from 'react-es6-component';
 import {connect} from 'react-redux';
 import {store} from './state/app';
 import toastr from 'toastr';
-import TopMenu from './components/TopMenu';
+import TopControls from './components/TopControls';
 
 window.onerror = function(errorMsg){
   if(errorMsg === "Uncaught TypeError: Cannot read property 'firstChild' of undefined"){
@@ -27,7 +27,7 @@ class Application extends Component {
   render(){
     return (
       <div>
-        <TopMenu></TopMenu>
+        <TopControls></TopControls>
       </div>
     );
   }

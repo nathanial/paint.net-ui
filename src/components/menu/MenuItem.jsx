@@ -1,4 +1,7 @@
+import _ from 'underscore';
+import $ from 'jquery';
 import React from 'react';
+import ReactDOM from 'react-dom';
 import Component from 'react-es6-component';
 
 class MenuItem extends Component {
@@ -9,7 +12,9 @@ class MenuItem extends Component {
   render(){
     if(this.props.separator){
       return (
-        <div className="menu-item-separator"></div>
+        <div className="menu-item-separator">
+          <div className="sep"></div>
+        </div>
       );
     } else {
       let className = "menu-item";
@@ -26,6 +31,14 @@ class MenuItem extends Component {
         </div>
       );
     }
+  }
+
+  componentDidMount(){
+    this._addListeners();
+  }
+
+  componentWillUnmount(){
+    this._removeListeners();
   }
 
   _renderIcon(){
@@ -48,6 +61,22 @@ class MenuItem extends Component {
     this.setState({
       open: true
     });
+  }
+
+  _addListeners(){
+    $(document).on('click', this._onDocumentClick);
+  }
+
+  _removeListeners(){
+    $(document).off('click', this._onDocumentClick);
+  }
+
+  _onDocumentClick(event){
+    if(this.state.open && !ReactDOM.findDOMNode(this).contains(event.target)){
+      this.setState({
+        open: false
+      });
+    }
   }
 }
 

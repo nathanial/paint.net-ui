@@ -12,7 +12,8 @@ app.on('ready', () => {
   let mainWindow = new BrowserWindow({
     width: 1200,
     height: 800,
-    'auto-hide-menu-bar' : true
+    'auto-hide-menu-bar' : true,
+    frame: false
   });
   mainWindow.loadUrl('file://' + __dirname + '/index.html');
   mainWindow.openDevTools();
