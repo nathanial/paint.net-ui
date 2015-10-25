@@ -15,7 +15,9 @@ const saveState = _.debounce(() => {
 }, 200);
 
 export const paintApp = combineReducers({
-  ui: function (){}
+  ui: function (){
+    return {};
+  }
 });
 
 export const store = createStore(paintApp, getInitialState());

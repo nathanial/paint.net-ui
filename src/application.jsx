@@ -1,6 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-const Menu = remote.require('menu');
+import $ from 'jquery';
+import _ from 'underscore';
+import Component from 'react-es6-component';
+import {connect} from 'react-redux';
+import {store} from './state/app';
+import toastr from 'toastr';
 
 window.onerror = function(errorMsg){
   if(errorMsg === "Uncaught TypeError: Cannot read property 'firstChild' of undefined"){
