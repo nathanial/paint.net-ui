@@ -44,10 +44,12 @@ class TopControls extends Component {
             <MenuItem label="Adjustments"></MenuItem>
             <MenuItem label="Effects"></MenuItem>
           </MenuBar>
-          <div className="window-controls">
-            <div className="minimize"></div>
-            <div className="maximize"></div>
-            <div className="exit"></div>
+          <div className="window-controls" ref="windowControls">
+            <div className="minimize">_</div>
+            <div className="maximize">
+              <div className="square"></div>
+            </div>
+            <div className="exit">x</div>
           </div>
         </div>
       </div>
@@ -56,7 +58,8 @@ class TopControls extends Component {
 
   _onTitleBarMouseDown(event){
     if(ReactDOM.findDOMNode(this).contains(event.target) &&
-       !ReactDOM.findDOMNode(this.refs.menuBar).contains(event.target)){
+       !ReactDOM.findDOMNode(this.refs.menuBar).contains(event.target) &&
+       !this.refs.windowControls.contains(event.target)){
       const [x,y] = this.win.getPosition();
       this.dragging = true;
 

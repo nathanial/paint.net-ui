@@ -16,5 +16,66 @@
       margin: 5px 5px -1px 5px;
     }
     border-bottom: 1px solid #ccc;
+
+    .window-controls{
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      .minimize,.maximize,.exit {
+        display: inline-block;
+        font-family: "Segoe UI";
+        color: #777;
+        font-size: 22px;
+        padding: 5px 15px;
+        cursor: default;
+      }
+
+      .minimize {
+        position: relative;
+        top: -15px;
+        padding-bottom: 9px;
+        &:hover {
+          background: #eee;
+        }
+        &:active {
+          background: #bbb;
+          color: black;
+        }
+      }
+
+      .maximize {
+        height: 19px;
+        .square {
+          position: relative;
+          top: 4px;
+          border: 1px solid #777;
+          width: 10px;
+          height: 10px;
+        }
+        &:hover {
+          background: #eee;
+        }
+        &:active {
+          background: #bbb;
+          .square {
+            border: 1px solid black;
+          }
+        }
+      }
+
+      .exit {
+        position: relative;
+        top: -8px;
+        font-weight: 100;
+        &:hover {
+          background: red;
+          color: white;
+        }
+        &:active {
+          opacity: 0.5;
+        }
+      }
+    }
   }
 }
