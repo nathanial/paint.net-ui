@@ -28,6 +28,12 @@ class TopControls extends Component {
             <MenuItem label="File">
               <MenuItem label="New..." icon="images/document_empty.png" shortcut="Ctrl+N"></MenuItem>
               <MenuItem label="Open..." icon="images/folder_vertical_open.png" shortcut="Ctrl+O"></MenuItem>
+              <MenuItem label="Open Recent">
+                <MenuItem label="File 1"></MenuItem>
+                <MenuItem label="File 2"></MenuItem>
+                <MenuItem label="File 3"></MenuItem>
+                <MenuItem label="File 4"></MenuItem>
+              </MenuItem>
               <MenuItem label="Acquire"></MenuItem>
               <MenuItem label="Close" icon="images/cancel.png" shortcut="Ctrl+W"></MenuItem>
               <MenuItem separator={true}></MenuItem>
@@ -83,9 +89,39 @@ class TopControls extends Component {
               <MenuItem separator={true}></MenuItem>
               <MenuItem label="Flatten" shortcut="Ctrl+Shift+F"></MenuItem>
             </MenuItem>
-            <MenuItem label="Layers"></MenuItem>
-            <MenuItem label="Adjustments"></MenuItem>
-            <MenuItem label="Effects"></MenuItem>
+            <MenuItem label="Layers">
+              <MenuItem label="Add New Layer" shortcut="Ctrl+Shift+N" style={{width:250}}></MenuItem>
+              <MenuItem label="Delete Layer" shortcut="Ctrl+Shift+Del"></MenuItem>
+              <MenuItem label="Ctrl+Shift+D" shortcut="Ctrl+Shift+D"></MenuItem>
+              <MenuItem label="Merge Layer Down" shortcut="Ctrl+M"></MenuItem>
+              <MenuItem label="Import From File..."></MenuItem>
+              <MenuItem separator={true}></MenuItem>
+              <MenuItem label="Flip Horizontal"></MenuItem>
+              <MenuItem label="Flip Vertical"></MenuItem>
+              <MenuItem label="Rotate / Zoom..." shortcut="Ctrl+Shift+Z"></MenuItem>
+              <MenuItem separator={true}></MenuItem>
+              <MenuItem label="Layer Properties..." shortcut="F4"></MenuItem>
+            </MenuItem>
+            <MenuItem label="Adjustments">
+              <MenuItem label="Auto-Level" shortcut="Ctrl+Shift+L" style={{width:250}}></MenuItem>
+              <MenuItem label="Black and White" shortcut="Ctrl+Shift+G"></MenuItem>
+              <MenuItem label="Brightness / Contrast" shortcut="Ctrl+Shift+T"></MenuItem>
+              <MenuItem label="Curves..." shortcut="Ctrl+Shift+M"></MenuItem>
+              <MenuItem label="Hue / Saturation" shortcut="Ctrl+Shift+U"></MenuItem>
+              <MenuItem label="Invert Colors" shortcut="Ctrl+Shift+I"></MenuItem>
+              <MenuItem label="Levels..." shortcut="Ctrl+L"></MenuItem>
+              <MenuItem label="Posterize..." shortcut="Ctrl+Shift+P"></MenuItem>
+              <MenuItem label="Sepia" shortcut="Ctrl+Shift+E"></MenuItem>
+            </MenuItem>
+            <MenuItem label="Effects">
+              <MenuItem label="Artistic"></MenuItem>
+              <MenuItem label="Blurs"></MenuItem>
+              <MenuItem label="Distort"></MenuItem>
+              <MenuItem label="Noise"></MenuItem>
+              <MenuItem label="Photo"></MenuItem>
+              <MenuItem label="Render"></MenuItem>
+              <MenuItem label="Stylize"></MenuItem>
+            </MenuItem>
           </MenuBar>
           <div className="window-controls" ref="windowControls">
             <div className="minimize">_</div>

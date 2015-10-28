@@ -34,6 +34,7 @@ class MenuItem extends Component {
           </div>
           <span className="menu-title" >{this.props.label}</span>
           <span className="menu-shortcut">{this.props.shortcut}</span>
+          {this._renderExpanderArrow()}
           {this._renderChildren()}
         </div>
       );
@@ -67,6 +68,15 @@ class MenuItem extends Component {
   _renderIcon(){
     if(this.props.icon){
       return <img src={this.props.icon}></img>
+    }
+  }
+
+  _renderExpanderArrow(){
+    if(this.props.children){
+      return (
+        <div className="arrow-right">
+        </div>
+      );
     }
   }
 
