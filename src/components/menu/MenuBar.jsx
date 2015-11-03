@@ -36,7 +36,7 @@ class MenuBar extends Component {
 
   _closeAll(){
     for(let i = 0; i < this.props.children.length; i++){
-      const menuItem = this.refs['mouseItem' + i];
+      const menuItem = this.refs['menuItem' + i];
       if(menuItem.isOpen()){
         menuItem.close();
       }
