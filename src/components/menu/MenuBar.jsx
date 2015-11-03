@@ -15,15 +15,21 @@ class MenuBar extends Component {
   }
 
   _listenToMenuItem(element, i){
-    return React.cloneElement(element, {ref: `mouseItem${i}`,onMouseOver: _.partial(this._onMouseOver, i)});
+    const name = `menuItem${i}`;
+    return React.cloneElement(element, {
+      ref: name,
+      onClose: _.partial(this._onMenuClose, name),
+      onMouseOver: _.partial(this._onMouseOver, i)
+    });
   }
 
   _onMouseOver(index, event){
-    const mouseItem = this.refs['mouseItem' + index];
+    const menuItem = this.refs['menuItem' + index];
     if(this._anyIsOpen()){
-      if(ReactDOM.findDOMNode(mouseItem).contains(event.target) && !mouseItem.isOpen()){
+      if(ReactDOM.findDOMNode(menuItem).contains(event.target) && !menuItem.isOpen()){
         this._closeAll();
-        mouseItem.open();
+        console.log("BAM");
+        menuItem.open();
       }
     }
   }
@@ -39,12 +45,17 @@ class MenuBar extends Component {
 
   _anyIsOpen(){
     for(let i = 0; i < this.props.children.length; i++){
-      const menuItem = this.refs['mouseItem' + i];
+      const menuItem = this.refs['menuItem' + i];
       if(menuItem.isOpen()){
         return true;
       }
     }
     return false;
+  }
+
+  _onMenuClose(name){
+    const menuItem = this.refs[name];
+    menuItem.close();
   }
 }
 

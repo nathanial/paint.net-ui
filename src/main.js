@@ -12,11 +12,13 @@ app.on('ready', () => {
   let mainWindow = new BrowserWindow({
     width: 1200,
     height: 800,
+    'min-width': 500,
+    'min-height': 300,
     'auto-hide-menu-bar' : true,
     frame: false
   });
   mainWindow.loadUrl('file://' + __dirname + '/index.html');
-  mainWindow.openDevTools();
+  mainWindow.openDevTools({detach:true});
   mainWindow.on('closed', function() {
     mainWindow = null;
   });

@@ -8,12 +8,19 @@ class MenuItem extends Component {
   static propTypes = {
     label: React.PropTypes.string,
     separator: React.PropTypes.bool,
-    shortcut: React.PropTypes.string
+    shortcut: React.PropTypes.string,
+    onClose: React.PropTypes.func
+  }
+
+  static defaultProps = {
+    onClose: function(){}
   }
 
   state = {
     open: false
   }
+
+  _isOpen = false;
 
   render(){
     if(this.props.separator){
@@ -28,7 +35,10 @@ class MenuItem extends Component {
         className += " open";
       }
       return (
-        <div onClick={this._onMenuClick} className={className} {...this.props}>
+        <div onMouseEnter={this._onMouseEnter}
+             onMouseLeave={this._onMouseLeave}
+             onClick={this._onMenuClick}
+             className={className} {...this.props}>
           <div className="icon">
             {this._renderIcon()}
           </div>
@@ -50,16 +60,18 @@ class MenuItem extends Component {
   }
 
   isOpen(){
-    return this.state.open;
+    return this._isOpen;
   }
 
   open(){
+    this._isOpen = true;
     this.setState({
       open: true
     });
   }
 
   close(){
+    this._isOpen = false;
     this.setState({
       open: false
     });
@@ -82,18 +94,61 @@ class MenuItem extends Component {
 
   _renderChildren(){
     if(this.props.children){
+      const children = React.Children.map(this.props.children, (element) => {
+        return React.cloneElement(element, {onClose: this._onCloseChild});
+      });
       return (
         <div className="menu-children">
-          {this.props.children}
+          {children}
         </div>
       );
     }
   }
 
-  _onMenuClick(){
-    this.setState({
-      open: true
-    });
+  _onMouseEnter(){
+    clearTimeout(this._menuCloseTimeout);
+    this._menuItemTimeout = setTimeout(() => {
+      this._hoverClick = true;
+      this._isOpen = true;
+      this.setState({
+        open: true
+      });
+    }, 500);
+  }
+
+  _onMouseLeave(event){
+    clearTimeout(this._menuItemTimeout);
+    this._menuCloseTimeout = setTimeout(() => {
+      if(this._hoverClick){
+        this._hoverClick = false;
+        this._isOpen = false;
+        this.setState({
+          open: false
+        });
+      }
+    }, 200);
+  }
+
+  _onMenuClick(event){
+    event.preventDefault();
+    event.stopPropagation();
+
+    this._hoverClick = false;
+    clearTimeout(this._menuItemTimeout);
+    if(this._isLeaf()){
+      this._isOpen = false;
+      this.setState({
+        open: false
+      });
+      if(this.props.onClose){
+        this.props.onClose();
+      }
+    } else {
+      this._isOpen = true;
+      this.setState({
+        open: true
+      });
+    }
   }
 
   _addListeners(){
@@ -106,10 +161,23 @@ class MenuItem extends Component {
 
   _onDocumentClick(event){
     if(this.state.open && !ReactDOM.findDOMNode(this).contains(event.target)){
+      this._isOpen = false;
       this.setState({
         open: false
       });
     }
+  }
+
+  _isLeaf(){
+    return !this.props.children || this.props.children.length === 0;
+  }
+
+  _onCloseChild(){
+    this._isOpen = false;
+    this.setState({
+      open: false
+    });
+    this.props.onClose();
   }
 }
 

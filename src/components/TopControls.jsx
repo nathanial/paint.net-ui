@@ -13,7 +13,7 @@ class TopControls extends Component {
 
   constructor(){
     super(...arguments);
-    this.win = BrowserWindow.getFocusedWindow();
+    this.win = BrowserWindow.getAllWindows()[0];
   }
 
   render(){
