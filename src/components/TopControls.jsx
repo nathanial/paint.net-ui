@@ -8,6 +8,7 @@ import MenuItem from './menu/MenuItem';
 import remote from 'remote';
 
 const BrowserWindow = remote.require('browser-window');
+const app = remote.require('app');
 
 class TopControls extends Component {
 
@@ -18,7 +19,7 @@ class TopControls extends Component {
 
   render(){
     return (
-      <div className="top-controls" onMouseDown={this._onTitleBarMouseDown}>
+      <div className="top-controls" onMouseDown={this._onTitleBarMouseDown} onDoubleClick={this._onTitleBarDoubleClick}>
         <div className="upper-section">
           <div className="title-bar">
             <img className="app-icon" src="images/document_empty.png"></img>
@@ -124,21 +125,32 @@ class TopControls extends Component {
             </MenuItem>
           </MenuBar>
           <div className="window-controls" ref="windowControls">
-            <div className="minimize">_</div>
-            <div className="maximize">
+            <div className="minimize" onClick={this._onMinimize}>_</div>
+            <div className="maximize" onClick={this._onMaximize}>
               <div className="square"></div>
             </div>
-            <div className="exit">x</div>
+            <div className="exit" onClick={this._onExit}>x</div>
           </div>
         </div>
       </div>
     );
   }
 
+  _onTitleBarDoubleClick(event){
+    if(this._isBackgroundEventTarget(event.target)){
+      if(!this.win.isMaximized()){
+        this.win.maximize();
+      } else {
+        this.win.restore();
+      }
+    }
+  }
+
   _onTitleBarMouseDown(event){
-    if(ReactDOM.findDOMNode(this).contains(event.target) &&
-       !ReactDOM.findDOMNode(this.refs.menuBar).contains(event.target) &&
-       !this.refs.windowControls.contains(event.target)){
+    if(this.win.isMaximized()){
+      return;
+    }
+    if(this._isBackgroundEventTarget(event.target)){
       const [x,y] = this.win.getPosition();
       this.dragging = true;
 
@@ -168,6 +180,30 @@ class TopControls extends Component {
   _removeDragListeners(){
     $(document).off('mousemove', this._onDocumentMouseMove);
     $(document).off('mouseup', this._onDocumentMouseUp);
+  }
+
+  _onMinimize(){
+    this.win.minimize();
+  }
+
+  _onMaximize(){
+    if(this.win.isMaximized()){
+      this.win.restore()
+    } else {
+      this.win.maximize();
+    }
+  }
+
+  _onExit(){
+    app.quit();
+  }
+
+  _isBackgroundEventTarget(target){
+    return (
+      ReactDOM.findDOMNode(this).contains(target) &&
+      !ReactDOM.findDOMNode(this.refs.menuBar).contains(target) &&
+      !this.refs.windowControls.contains(target)
+    );
   }
 }
 

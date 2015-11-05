@@ -18,7 +18,7 @@ app.on('ready', () => {
     frame: false
   });
   mainWindow.loadUrl('file://' + __dirname + '/index.html');
-  mainWindow.openDevTools({detach:true});
+  mainWindow.openDevTools();
   mainWindow.on('closed', function() {
     mainWindow = null;
   });

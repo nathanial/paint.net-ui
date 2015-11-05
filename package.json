@@ -18,12 +18,14 @@
   },
   "homepage": "https://github.com/nathanial/paint.net-ui#readme",
   "devDependencies": {
-    "gulp": "^3.9.0",
-    "gulp-babel": "^5.2.0",
-    "gulp-less": "^3.0.3",
-    "gulp-util": "^3.0.6",
-    "gulp-watch": "^4.3.4",
-    "gulp-sourcemaps": "^1.5.2"
+    "electron-connect": "^0.3.3",
+    "gulp": "3.9.0",
+    "gulp-babel": "5.2.0",
+    "gulp-less": "3.0.3",
+    "gulp-sourcemaps": "1.5.2",
+    "gulp-util": "3.0.6",
+    "gulp-watch": "4.3.4",
+    "merge-stream": "^1.0.0"
   },
   "dependencies": {
     "babel-runtime": "5.8.20",
@@ -39,7 +41,7 @@
     "mousetrap": "1.5.3",
     "open": "0.0.5",
     "react": "0.14.2",
-    "react-dom" : "0.14.2",
+    "react-dom": "0.14.2",
     "react-bootstrap": "0.27.2",
     "react-es6-component": "*",
     "react-redux": "3.1.0",
