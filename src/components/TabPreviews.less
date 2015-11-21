@@ -1,3 +1,33 @@
 .tab-previews {
-  
+  position: absolute;
+  left: 400px;
+  top: 10px;
+  .tab-preview {
+    display: inline-block;
+    position: relative;
+    width: 72px;
+    height: 75px;
+    border: 1px solid transparent;
+
+    &.selected {
+      background: saturate(#d8e9fb, 40%);
+      border: 1px solid saturate(#77a6da, 40%);
+      outline: 1px solid white;
+      outline-offset: -2px;
+
+      .inner-image {
+        border: 1px solid #77a6da;
+      }
+    }
+
+    .inner-image {
+      position: absolute;
+      left: 4px;
+      top: 20px;
+      right: 4px;
+      bottom: 4px;
+      background: white;
+      border: 1px solid #bbb;
+    }
+  }
 }

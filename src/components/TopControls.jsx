@@ -17,7 +17,16 @@ class TopControls extends Component {
     super(...arguments);
     this.win = BrowserWindow.getAllWindows()[0];
     this.state = {
-      tabs: ['Foo', 'Bar']
+      tabs: [
+        {
+          name:'Foo',
+          selected: true
+        },
+        {
+          name:'Bar',
+          selected: false
+        }
+      ]
     };
   }
 
@@ -149,7 +158,7 @@ class TopControls extends Component {
 
   _renderTabPreviews(){
     return (
-      <TabPreviews tabs={this.state.tabs}>
+      <TabPreviews tabs={this.state.tabs} onSelected={this._onTabSelected}>
       </TabPreviews>
     );
   }
@@ -222,6 +231,14 @@ class TopControls extends Component {
       !ReactDOM.findDOMNode(this.refs.menuBar).contains(target) &&
       !this.refs.windowControls.contains(target)
     );
+  }
+
+  _onTabSelected(tab){
+    for(let t of this.state.tabs){
+      t.selected = false;
+    }
+    tab.selected = true;
+    this.forceUpdate();
   }
 }
 
