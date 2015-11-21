@@ -17,6 +17,8 @@ class TabPreview extends Component {
       <div className={classNames} onClick={this._onClick}>
         {this._renderHighlight()}
         <div className="inner-image"></div>
+        <div className="favorite-btn"></div>
+        <div className="close-btn">x</div>
       </div>
     );
   }

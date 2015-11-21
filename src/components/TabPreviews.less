@@ -3,8 +3,32 @@
   left: 400px;
   top: 10px;
 
+  .close-btn {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background: #cc0000;
+    color: white;
+    font-family: sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    padding: 1px 4px;
+    vertical-align: middle;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    cursor: default;
+  }
 
   .tab-preview:hover {
+
+    &.selected {
+      .close-btn {
+        display: block;
+        opacity: 1;
+      }
+    }
+
     .hover-highlight {
       position: absolute;
       top: -1px;
