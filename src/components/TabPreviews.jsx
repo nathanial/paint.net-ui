@@ -15,9 +15,16 @@ class TabPreview extends Component {
     }
     return (
       <div className={classNames} onClick={this._onClick}>
+        {this._renderHighlight()}
         <div className="inner-image"></div>
       </div>
     );
+  }
+
+  _renderHighlight(){
+    if(!this.props.tab.selected){
+      return <div className="hover-highlight"></div>;
+    }
   }
 
   _onClick(){
@@ -33,8 +40,11 @@ class TabPreviews extends Component {
   }
 
   render(){
+    const highlightStyle = this._getHighlightStyle();
+
     return (
       <div className="tab-previews">
+        <div className="highlight" style={highlightStyle}></div>
         {this._renderTabs()}
       </div>
     );
@@ -44,11 +54,22 @@ class TabPreviews extends Component {
     return _.map(this.props.tabs, (tab) => {
       return (
         <TabPreview tab={tab} onSelected={this.props.onSelected}>
-
         </TabPreview>
       );
     });
+  }
 
+  _getHighlightStyle(){
+    const tabIndex = this._selectedTabIndex();
+    return {
+      left: 74 * tabIndex
+    };
+  }
+
+  _selectedTabIndex(){
+    const selectedTab = _.find(this.props.tabs, (tab) => tab.selected);
+    const index = this.props.tabs.indexOf(selectedTab);
+    return index;
   }
 }
 

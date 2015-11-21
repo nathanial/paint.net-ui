@@ -25,6 +25,10 @@ class TopControls extends Component {
         {
           name:'Bar',
           selected: false
+        },
+        {
+          name:'Baz',
+          selected: false
         }
       ]
     };
